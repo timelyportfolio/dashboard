@@ -1,7 +1,7 @@
 {
-  "name": "react-dashboard-walden",
-  "version": "0.0.0",
-  "description": "react dashboard.",
+  "name": "dashboard",
+  "version": "0.0.1",
+  "description": "react.js dashboard",
   "main": "server.js",
   "dependencies": {
     "bootstrap": "^3.2.0",
@@ -37,18 +37,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reactjs/react-tutorial.git"
+    "url": "https://github.com/walden-/dashboard.git"
   },
   "keywords": [
     "react",
     "dashboard"
   ],
-  "author": "petehunt",
+  "author": "walden",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reactjs/react-tutorial/issues"
+    "url": "https://github.com/walden-/dashboard/issues"
   },
-  "homepage": "https://github.com/reactjs/react-tutorial",
+  "homepage": "https://github.com/walden-/dashboard",
   "jest": {
     "scriptPreprocessor": "<rootDir>/preprocessor.js",
     "unmockedModulePathPatterns": [
