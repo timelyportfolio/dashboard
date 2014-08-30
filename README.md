@@ -1,4 +1,4 @@
 dashboard
 =========
 
- react.js based dashboard
+react.js based dashboard
