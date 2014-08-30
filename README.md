@@ -2,6 +2,8 @@
 
 react.js based dashboard (experimental)
 
+[demo](http://wikicompany.org/dashboard/)
+
 # setup
 
 * npm install

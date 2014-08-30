@@ -4,8 +4,7 @@
 //require("../node_modules/font-awesome/css/font-awesome.min.css");
 //require("../css/font-awesome.min.css");
 //require("../css/bootstrap.min.css");
-require("../css/sb-admin-2.css");
-require("../css/base.css");
+require("../css/base.less");
 
 var Cortex          = require("cortexjs");
 
