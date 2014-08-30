@@ -1,2 +1,7 @@
 bower_components
 node_modules
+scripts/bundle.js
+scripts/*.ttf
+scripts/*.woff
+scripts/*.eot
+scripts/*.svg
