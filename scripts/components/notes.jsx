@@ -22,10 +22,11 @@ var NotesList = React.createClass({
 	render: function() {
 
     	var createItem = function(itemText, index) {
+
         	return (
            		<div key={index} >
                		<Panel bsStyle="primary" header="...">
-                   		{itemText}
+                   		{itemText.val()}
 					</Panel>
 				</div>
 			);
@@ -33,7 +34,7 @@ var NotesList = React.createClass({
 
     return (
 		<div>
-       		{this.props.cortex.notes.map(createItem)}
+            {this.props.cortex.notes.map(createItem)}
 		</div>
 	);
   }
@@ -41,10 +42,17 @@ var NotesList = React.createClass({
 
 var Notes = module.exports = React.createClass({
 
-	// items: this.props.cortex.notes,
+    getInitialState: function() {
+        return {
+            items: [],
+            text: ''
+        };
+    },
 
     onChange: function(e) {
-    	//text: e.target.value
+        this.setState({
+            text: e.target.value
+        });
     },
 
     handleKeyDown: function(e) {
@@ -55,29 +63,35 @@ var Notes = module.exports = React.createClass({
 
     clearAll: function(e) {
         e.preventDefault();
+        this.replaceState({
+            items: [],
+            text: ''
+        });
 
-		this.props.cortex.notes = [];
-    	// items: [],
-        // text: ''
+		this.props.cortex.notes.set([]);
     },
 
     handleSubmit: function(e) {
         e.preventDefault();
-		this.props.cortex.notes.push(this.props.note_text);
 
-        //var nextItems = this.state.items.concat([this.state.text]);
-        //var nextText = '';
-    	// items: nextItems,
-        // text: nextText
+        var nextItems = this.state.items.concat([this.state.text]);
+
+		this.props.cortex.notes.push(this.state.text);
+		//console.log(this.props.cortex.notes);
+
+        var nextText = '';
+
+        this.setState({
+            items: nextItems,
+            text: nextText
+        });
     },
 
     validationState: function() {
-		/*
-        var length = this.props.note_text.val().length;
+        var length = this.state.text.length;
         if (length > 5) return 'success';
         else if (length > 3) return 'warning';
         else if (length > 0) return 'error';
-		*/
     },
 
     undo: function() {
@@ -86,8 +100,6 @@ var Notes = module.exports = React.createClass({
     },
 
     render: function() {
-		console.log(this.props.cortex);
-
         return (
 
 			<div>
@@ -98,12 +110,9 @@ var Notes = module.exports = React.createClass({
 				</div>
 
 				<p/>
-				<NotesList cortex={this.props.cortex}/>
-
-				<p/>
 				<Input
 					type="text"
-					value={this.props.cortex.note_text.val()}
+					value={this.state.text}
 					placeholder="Enter text"
 					label=""
 					required={true}
@@ -120,7 +129,8 @@ var Notes = module.exports = React.createClass({
 				<ButtonToolbar>
 					<Button
 						onClick={this.handleSubmit}
-						bsStyle="primary" > add
+						bsStyle="primary" >
+						{'Add #' + (this.state.items.length + 1)}
 					</Button>
 					<Button
 						onClick={this.clearAll}
@@ -129,51 +139,13 @@ var Notes = module.exports = React.createClass({
 						clear all
 					</Button>
 				</ButtonToolbar>
+
+				<p/>
+				<NotesList items={this.state.items} cortex={this.props.cortex} />
+				
 			</div>
 
         );
     }
 
 });
-
-
-/*
-var Alert = RB.Alert;
-
-var AlertDismissable = React.createClass({
-  getInitialState: function() {
-    return {
-      alertVisible: true
-    };
-  },
-
-  render: function() {
-    if (this.state.alertVisible) {
-      return (
-        <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
-          <h4><i className="fa fa-warning fa-2x"></i> Oh snap! An error occured!</h4>
-          <p>Change this and then try it again.</p>
-          <p><br/>
-            <Button bsStyle="danger">Take this action</Button> or &nbsp;
-            <Button onClick={this.handleAlertDismiss}>Hide Alert</Button>
-          </p>
-        </Alert>
-        );
-    }
-
-    return (
-      <Button onClick={this.handleAlertShow}>Show Alert</Button>
-      );
-  },
-
-  handleAlertDismiss: function() {
-    this.setState({alertVisible: false});
-  },
-
-  handleAlertShow: function() {
-    this.setState({alertVisible: true});
-  }
-});
-*/
-
-

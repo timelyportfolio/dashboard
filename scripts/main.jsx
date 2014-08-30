@@ -40,15 +40,10 @@ var appdata = {
 		{name: "Marge", id: 9, age: 11},
 		{name: "Hilde", id: 10, age: 11},
 	   ],
-	notes: ["foo", "bar", "baz"],
-	note_text: "",
+	notes: [],
 };
 
 var cortex = new Cortex(appdata);
-
-cortex.on("update", function(updatedState) {
-  App.setProps({cortex: updatedState});
-});
 
 var routes = (
   <Route handler={App} cortex={cortex}>
@@ -62,10 +57,14 @@ var routes = (
 );
 // <Route name="bigform" handler={BigForm}/>
 
-React.renderComponent(
+var rootComponent = React.renderComponent(
   <Routes children={routes} />,
   document.body
 );
+
+cortex.on("update", function(updatedState) {
+  rootComponent.setProps({cortex: updatedState});
+});
 
 
 
