@@ -1,5 +1,5 @@
-// jshint ignore: start
 /** @jsx React.DOM */
+// jshint ignore: start
 
 var React = require('react');
 

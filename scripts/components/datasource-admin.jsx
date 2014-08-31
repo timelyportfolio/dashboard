@@ -2,7 +2,7 @@
 var React = require('react');
 
 var RB = require('react-bootstrap');
-//var Form = RB.Form;
+var Form = RB.Form;
 var ButtonToolbar = RB.ButtonToolbar;
 var ButtonGroup = RB.ButtonGroup;
 var Button = RB.Button;
@@ -17,16 +17,42 @@ var Row = RB.Row;
 var Col = RB.Col;
 var Accordion = RB.Accordion;
 
+var cuid = require('cuid');
+
 var NotesList = React.createClass({
+
+	remove: function(e, id) {
+		//this.props.floor.rooms.push({light_on: true});
+		//console.log(id);
+		//return false;
+	},
 
 	render: function() {
 
     	var createItem = function(itemText, index) {
-
+			//console.log( cuid() );
         	return (
            		<div key={index} >
-               		<Panel bsStyle="primary" header="...">
-                   		{itemText.val()}
+               		<Panel bsStyle="primary" header={itemText.name.val()}>
+
+                   		URL: <a href={itemText.url.val()}>{itemText.url.val()}</a>
+						<p>ID: {itemText.id.val()}</p>
+
+					<ButtonToolbar>
+						<Button
+							onClick={this.edit}
+							bsStyle="primary" >
+							{'edit' }
+						</Button>
+						<Button
+							onClick={this.remove}
+							type="#"
+							bsStyle="danger" >
+							remove
+						</Button>
+					</ButtonToolbar>
+
+
 					</Panel>
 				</div>
 			);
@@ -34,13 +60,13 @@ var NotesList = React.createClass({
 
     return (
 		<div>
-            {this.props.cortex.notes.map(createItem)}
+            {this.props.cortex.datasources.map(createItem)}
 		</div>
 	);
   }
 });
 
-var Notes = module.exports = React.createClass({
+var DataSourceAdmin = module.exports = React.createClass({
 
     getInitialState: function() {
         return {
@@ -105,7 +131,7 @@ var Notes = module.exports = React.createClass({
 			<div>
                 <div className="row">
                     <div className="col-lg-12">
-                        <h1 className="page-header">Notes</h1>
+                        <h1 className="page-header">data sources</h1>
                     </div>
 				</div>
 

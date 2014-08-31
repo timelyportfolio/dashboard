@@ -15,13 +15,17 @@ var MenuItem            = RB.MenuItem;
 var DropdownButton      = RB.DropdownButton;
 var DropdownButton      = RB.DropdownButton;
 
-
+var DataSourceSelect 	= require('./datasource-select');
 
 var NavBarTopLinks = React.createClass({
 
     render: function() {
         return (
 		  <Nav className="nav navbar-top-links navbar-right">
+
+			<li><DataSourceSelect cortex={this.props.cortex}/></li>
+
+        	<li key={1}><Link to="datasources"><i className="fa fa-database"></i></Link></li>
 
 			<DropdownButton key={10} className="fa fa-bar-chart-o" title="" label="dropdownMenu">
 			  <MenuItem className="fa fa-bar-chart-o" key="10"><Link to="charts">charts</Link></MenuItem>
@@ -32,7 +36,7 @@ var NavBarTopLinks = React.createClass({
 
 			<DropdownButton key={60} className="fa fa-support" title="">
 			  <MenuItem key="50"><Link to="help">online help</Link></MenuItem>
-			  <MenuItem key="60"><Link to="help">contact form</Link></MenuItem>
+			  <MenuItem key="60"><Link to="bigform">contact form</Link></MenuItem>
 			</DropdownButton>
 
 			<DropdownButton key={80} className="fa fa-user" title="">

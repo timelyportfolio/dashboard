@@ -52,13 +52,13 @@ var App = module.exports = React.createClass({
 									<div className="navbar-brand" to="app"><a href="#/"><i className="fa fa-cube fa-fw"></i>dashboard</a></div>
 							</div>
 
-							<div id="NavBarTopLinks"> <NavBarTopLinks /> </div>
+							<div id="NavBarTopLinks"> <NavBarTopLinks cortex={this.props.cortex} /> </div>
 
 							{/* <div id="SideBar"> <SideBar cortex={this.props.cortex} /> </div> */}
 					</nav>
 
 					<div id="page-wrapper">
-							 {this.props.activeRouteHandler() || <Index></Index>} 
+							 {this.props.activeRouteHandler() || <Index cortex={this.props.cortex} ></Index>} 
 					</div>
 
 			</div>

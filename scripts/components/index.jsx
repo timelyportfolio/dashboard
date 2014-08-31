@@ -43,108 +43,108 @@ var Index = module.exports = React.createClass({
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 
 				<div className="dummy"></div>
-				<p href="#/x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>
 
 			  <div className="col-md-3 col-sm-4 col-xs-6">
 				<div className="dummy"></div>
-				<p href="#x" className="thumbnail purple">
+				<p href="#/" className="thumbnail purple">
 					<ModalTrigger modal={<MyModal />}>
-					  <a href="#x">info</a>
+					  <a href="#/">info</a>
 					</ModalTrigger>
 				</p>
 			  </div>

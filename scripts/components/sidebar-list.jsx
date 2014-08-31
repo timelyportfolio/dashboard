@@ -59,7 +59,7 @@ var SidebarList = React.createClass({
 				</Panel>
 				<Panel header="support" key={60}  className="sidebar-panel-item">
                     <li><h4><Link to="help">online help</Link></h4></li>
-                    <li><h4><Link to="help">contact form</Link></h4></li>
+                    <li><h4><Link to="bigform">contact form</Link></h4></li>
 				</Panel>
 			  </Accordion>
 
