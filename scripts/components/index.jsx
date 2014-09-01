@@ -33,7 +33,7 @@ var Index = module.exports = React.createClass({
       <div>
 			<div className="row">
 				<div className="col-lg-12">
-					<h1 className="page-header">Reactive Dashboard</h1>
+					<h1 className="page-header">info tiles</h1>
 				</div>
 			</div>
 

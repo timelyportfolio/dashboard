@@ -63,7 +63,7 @@ var DataSourceSelect = module.exports = React.createClass({
         return (
 			<div>
 				<form>
-					<Input type="select" name="select-one"  value={this.props.cortex.datasource_chosen.val()} onChange={this.onChange}>
+					<Input type="select" name="select-one" value={this.props.cortex.datasource_chosen.val()} onChange={this.onChange}>
 						{options}
 					</Input>
 				</form>
