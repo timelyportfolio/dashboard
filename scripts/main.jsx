@@ -1,11 +1,18 @@
 /** @jsx React.DOM */
 
-//require("~bootstrap/dist/css/bootstrap.min.css");
-//require("../node_modules/font-awesome/css/font-awesome.min.css");
-//require("../css/font-awesome.min.css");
-//require("../css/bootstrap.min.css");
+// -- global styles --
+require("bootstrap/dist/css/bootstrap.min.css");
+require("font-awesome/css/font-awesome.min.css");
 require("../css/base.less");
 
+// -- global scripts --
+//broken: bootstrap cant see this: require("jquery/dist/jquery.min.js");
+require("bootstrap/dist/js/bootstrap.min.js");
+require("d3/d3.min.js");
+//works: require("../bower_components/c3/c3.css");
+//broken: require("../bower_components/c3/c3.min.js");
+
+// -- modules --
 var Cortex          = require("cortexjs");
 
 //var minimongo 		= require("minimongo");
