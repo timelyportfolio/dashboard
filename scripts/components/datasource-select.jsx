@@ -9,7 +9,7 @@ var Input = RB.Input;
 
 var handleForm = require('../utils/handle-form.js');
 
-var DataSourceSelect = module.exports = React.createClass({
+var datasourceSelect = module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {};
@@ -18,43 +18,36 @@ var DataSourceSelect = module.exports = React.createClass({
 	onChange: handleForm,
 
 	componentDidUpdate: function(){
-		//console.log( JSON.stringify(this.state["select-one"], null, 1) );
 
-		var old_data_id = this.props.cortex.datasource_chosen.val();
+		var id = this.state["select-one"];
+		this.props.cortex.datasource.id.set(id);
 
-		this.props.cortex.datasource_chosen.set(this.state["select-one"]);
-		var new_data_id = this.props.cortex.datasource_chosen.val();
+		this.props.cortex.datasource.list.map(function(d) {
+			if (d.id.val() === id ){
 
-		if (this.props.cortex.datasource_chosen.val() !== '' &&
-			old_data_id !== this.props.cortex.datasource_chosen.val() ){
+				this.props.cortex.datasource.name = d.name.val();
+				this.props.cortex.datasource.url  = d.url.val();
 
-
-			this.props.cortex.datasources.map(function (datasource) {
-				if (datasource.id.val() === new_data_id ){
-					this.loadData( datasource.url.val() );
-				}
-			}.bind(this) );
-
-			
-		}
+				// tofix: only load JSON data if needed 
+				this.loadData( d.url.val(), d.data );
+			}
+		}.bind(this) );
 	},
 
-	loadData: function(url) {
+	loadData: function(url, obj) {
 		request
 			.get(url)
 			.end(function(res) {
-				//this.setState({comments: res.body});
-				//console.log( res.body );
-				this.props.cortex.datasource_data.set(res.body);
+				obj.set(res.body);
+				this.props.cortex.datasource.data.set(res.body);
+				//console.log(obj.val());
 			}.bind(this));
 	},
 
-
     render: function() {
-		//console.log(this.props.cortex);
 
-		var options = this.props.cortex.datasources.map(function (datasource, index) {
-			return ( <option key={index} value={datasource.id.val()}>{datasource.name.val()}</option> );
+		var options = this.props.cortex.datasource.list.map(function(d, index) {
+			return ( <option key={index} value={d.id.val()}>{d.name.val()}</option> );
 		});
 
 		// default empty option
@@ -62,11 +55,9 @@ var DataSourceSelect = module.exports = React.createClass({
 
         return (
 			<div>
-				<form>
-					<Input type="select" name="select-one" value={this.props.cortex.datasource_chosen.val()} onChange={this.onChange}>
-						{options}
-					</Input>
-				</form>
+				<Input type="select" name="select-one" value={this.props.cortex.datasource.id.val()} onChange={this.onChange}>
+					{options}
+				</Input>
 			</div>
         );
     }

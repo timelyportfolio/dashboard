@@ -60,7 +60,7 @@ var NotesList = React.createClass({
 
     return (
 		<div>
-            {this.props.cortex.datasources.map(createItem)}
+            {this.props.cortex.datasource.list.map(createItem)}
 		</div>
 	);
   }

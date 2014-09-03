@@ -2,3 +2,8 @@ bower_components
 node_modules
 npm-debug.log
 public/bundle.js
+public/*.svg
+public/*.woff
+public/*.eot
+public/*.ttf
+TODO.md

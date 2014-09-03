@@ -1,16 +1,16 @@
 /** @jsx React.DOM */
 
-// -- global styles --
+// -- styles --
 require("bootstrap/dist/css/bootstrap.min.css");
 require("font-awesome/css/font-awesome.min.css");
 require("../css/base.less");
 
-// -- global scripts --
-//broken: bootstrap cant see this: require("jquery/dist/jquery.min.js");
+// -- scripts --
+//require("jquery/dist/jquery.min.js"); // broken: bootstrap cant see jquery for some reason
 require("bootstrap/dist/js/bootstrap.min.js");
 require("d3/d3.min.js");
-//works: require("../bower_components/c3/c3.css");
-//broken: require("../bower_components/c3/c3.min.js");
+//require("../bower_components/c3/c3.css");    // works
+//require("../bower_components/c3/c3.min.js"); // broken
 
 // -- modules --
 var Cortex          = require("cortexjs");
@@ -38,26 +38,20 @@ var Index  			= require('./components/index');
 var DataSourceAdmin = require('./components/datasource-admin');
 
 var appdata = {
-	a: 100,								// this.props.cortex.a.val()
-	b: [1, 2, 3],						// this.props.cortex.b.val()
-	c: false, 							// this.props.cortex.c.val()
-	d: {test1: true, test2: false},		// this.props.cortex.d.test1.val()
-	users: [							// this.props.cortex.users.val()
-		{name: "Mimi", id: 2, age: 50}, // this.props.cortex.users.map()
-		{name: "Simi", id: 1, age: 45},
-		{name: "Pim", id: 6, age: 11},
-		{name: "Fred", id: 8, age: 11},
-		{name: "Marge", id: 9, age: 11},
-		{name: "Hilde", id: 10, age: 11},
-	   ],
 	notes: [],
-	datasources: [
-		{id: 'ahzhmjps60004345933dhzinl', name: "People", url: 'data/people.json', type: 'json'},
-		{id: 'dhzhmjps60004345933fhzinl', name: "OECD", url: 'data/oecd-canada.json', type: 'json-stat'},
-	],
-	datasource_chosen: '',
-	datasource_data_id: '',
-	datasource_data: '',
+	datasource: {
+		list: [
+			{id: 'ahzhmjps60004345933dhzinl', name: "People", url: 'data/people.json', type: 'json', data: ''},
+			{id: 'bhzhmjps60004345933fhzinl', name: "People2", url: 'data/people2.json', type: 'json', data: ''},
+			//{id: 'chzhmjps60004345933fhzinl', name: "Foods", url: 'data/foods.json', type: 'json', data: ''},
+			//{id: 'dhzhmjps60004345933fhzinl', name: "OECD", url: 'data/oecd-canada.json', type: 'json-stat', data: ''},
+		],
+		id: '',
+		name: '',
+		url: '',
+		type: '',
+		data: '',
+	},
 };
 
 var cortex = new Cortex(appdata);
