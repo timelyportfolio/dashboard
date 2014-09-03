@@ -1,0 +1,95 @@
+{
+ "name": "Recalled",
+ "children": [
+  {
+   "name": "Fruit",
+   "img":"fruit",
+   "children": [
+    {"name":"Citrus", "value":20},
+    {"name":"Dried Fruit", "value":29},
+    {"name":"Berries", "value":45},
+    {"name":"Melons", "value":28},
+    {"name":"Other Fruit", "value":41}
+   ]
+  },
+  {
+   "name": "Vegetables",
+      "img":"veg",
+
+   "children": [
+    {"name":"Leafy Greens", "value":43},
+    {"name":"Peppers", "value":30},
+    {"name":"Sprouts", "value":37},
+    {"name":"Tomatoes", "value":29},
+    {"name":"Other", "value":29}
+   ]
+  },
+  {
+   "name": "Bread & Cereals",
+    "img":"bread",
+   "children": [
+    {"name":"Cereals", "value":15},
+    {"name":"Baked Goods", "value":291},
+    {"name":"Pasta", "value":8},
+    {"name":"Potatoes", "value":28}
+   ]
+  },
+  {
+   "name": "Meat & Fish",
+   "img":"meat",
+   "children": [
+    {"name":"Pork and Ham", "value":56},
+    {"name":"Poultry", "value":147},
+    {"name":"Fish", "value":188},
+    {"name":"Beef", "value":114},
+    {"name":"Bacon/Cured Meats", "value":12},
+    {"name":"Shellfish", "value":19},
+    {"name":"Ground Beef", "value":79}
+   ]
+  },
+  {
+   "name": "Sauces",
+   "img": "sauces",
+   "children": [
+    {"name":"Sauces", "value":20},
+    {"name":"Condiments", "value":27}
+   ]
+  },
+  {
+   "name": "Dairy & Eggs",
+      "img":"dairy",
+   "children": [
+    {"name":"Dairy Products", "value":288},
+    {"name":"Eggs", "value":63}
+
+   ]
+  },
+  {
+   "name": "Nuts",
+    "img":"peanut",
+   "children": [
+    {"name":"Other Nut Products", "value":200},
+    {"name":"Peanuts", "value":249}
+   ]
+  },
+  {
+   "name": "Drinks/Sweets",
+      "img":"beverages",
+
+   "children": [
+    {"name":"Beverages", "value":34},
+    {"name":"Coffee", "value":18},
+    {"name":"Candy", "value":139}
+   ]
+  },
+  {
+   "name": "Other",
+    "img": "other",
+   "children": [
+    {"name":"Supplements and Vitamins", "value":97},
+    {"name":"Meat Substitutes", "value":21},
+    {"name":"Infant Food", "value":7}
+   ]
+  }
+ ]
+}
