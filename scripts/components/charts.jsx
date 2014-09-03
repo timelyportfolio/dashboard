@@ -10,13 +10,19 @@ var Charts = module.exports = React.createClass({
 
 	componentDidMount: function(){
 
+		var id = this.props.cortex.datasource_active_id.val();
+
+        var mydata = this.props.cortex.datasources[id].data.map(function(d, index) {
+            return ( d.age.val() );
+        });
+
+        mydata.unshift( 'age' ); // label
+
 		var chart1a = c3.generate({
 			bindto: '#chart1a',
 			data: {
 				type: 'spline',
-				columns: [
-					['sample', 30, 200, 100, 56, 150, 250, 150, 200, 170, 240, 34, 150, 100, 40, 150, 250, 150, 200, 170, 240, 100, 150, 250, 150, 200, 170, 240, 30, 200, 100, 78, 150, 250, 150, 200, 170, 24, 35, 150, 100, 98, 35, 22, 25, 30, 27, 140, 150, 90, 150, 50, 120, 70, 40]
-				]
+				columns: [ mydata ]
 			},
 			zoom: {
 				enabled: true

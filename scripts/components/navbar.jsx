@@ -36,7 +36,7 @@ var NavBarTopLinks = React.createClass({
 
 			<DropdownButton key={60} className="fa fa-support" title="">
 			  <MenuItem key="50"><Link to="help">online help</Link></MenuItem>
-			  <MenuItem key="60"><Link to="bigform">contact form</Link></MenuItem>
+			  <MenuItem key="60"><Link to="contact">contact form</Link></MenuItem>
 			</DropdownButton>
 
 			<DropdownButton key={80} className="fa fa-user" title="">

@@ -14,7 +14,7 @@ var STATES = [
   'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
 ]
  
-var BigForm = module.exports = React.createClass({
+var Contact = module.exports = React.createClass({
 
   getInitialState: function() {
     return {

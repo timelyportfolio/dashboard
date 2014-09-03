@@ -13,6 +13,7 @@ require("d3/d3.min.js");
 //require("../bower_components/c3/c3.min.js"); // broken
 
 // -- modules --
+var Cookies 		= require("cookies-js");
 var Cortex          = require("cortexjs");
 
 //var minimongo 		= require("minimongo");
@@ -28,10 +29,9 @@ var Link            = Router.Link;
 var App         	= require('./components/app');
 var Notes          	= require('./components/notes');
 var Charts         	= require('./components/charts');
-var Dashboard  		= require('./components/dashboard');
 var Campaign   		= require('./components/campaign');
 var SmartTable 		= require('./components/smarttable');
-var BigForm    		= require('./components/bigform');
+var Contact    		= require('./components/contact');
 var Help      		= require('./components/help');
 var Campaign   		= require('./components/campaign');
 var Index  			= require('./components/index');
@@ -39,19 +39,12 @@ var DataSourceAdmin = require('./components/datasource-admin');
 
 var appdata = {
 	notes: [],
-	datasource: {
-		list: [
-			{id: 'ahzhmjps60004345933dhzinl', name: "People", url: 'data/people.json', type: 'json', data: ''},
-			{id: 'bhzhmjps60004345933fhzinl', name: "People2", url: 'data/people2.json', type: 'json', data: ''},
-			//{id: 'chzhmjps60004345933fhzinl', name: "Foods", url: 'data/foods.json', type: 'json', data: ''},
-			//{id: 'dhzhmjps60004345933fhzinl', name: "OECD", url: 'data/oecd-canada.json', type: 'json-stat', data: ''},
-		],
-		id: '',
-		name: '',
-		url: '',
-		type: '',
-		data: '',
+
+	datasources: {
+		ahzhmjps60004345933dhzinl: { name: "People", url: 'data/people.json', type: 'json', data: '' },
+		bhzhmjps60004345933fhzinl: { name: "People2", url: 'data/people2.json', type: 'json', data: '' },
 	},
+	datasource_active_id: '',
 };
 
 var cortex = new Cortex(appdata);
@@ -59,11 +52,11 @@ var cortex = new Cortex(appdata);
 var routes = (
   <Route handler={App} cortex={cortex}>
 	<Route name="datasources" handler={DataSourceAdmin} cortex={cortex}/>
-	<Route name="notes"  handler={Notes} cortex={cortex} />
-	<Route name="charts" handler={Charts}/>
+	<Route name="notes"  handler={Notes} cortex={cortex}/>
+	<Route name="charts" handler={Charts} cortex={cortex}/>
 	<Route name="campaign" handler={Campaign}/>
-	<Route name="smarttable" handler={SmartTable} cortex={cortex} />
-	<Route name="bigform" handler={BigForm}/>
+	<Route name="smarttable" handler={SmartTable} cortex={cortex}/>
+	<Route name="contact" handler={Contact}/>
 	<Route name="help" handler={Help}/>
 	<Route name="index" handler={Index}/>
   </Route>
@@ -106,6 +99,10 @@ cortex.on("update", function(updatedState) {
 	//	console.log('your indexdb was updated');
 	//});
 });
+
+if (Cookies.enabled) {
+    Cookies.set('dashboard-indexdb', 'foo');
+}
 
 /*
 databaseExists('IDBWrapper-minimongo_dashboard', function (yesno) {

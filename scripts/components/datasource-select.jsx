@@ -1,11 +1,12 @@
 /** @jsx React.DOM */
-var React = require('react');
+var React 	= require('react');
 
+var Cookies = require("cookies-js");
 var request = require('superagent');
 
-var RB = require('react-bootstrap');
-var Form = RB.Form;
-var Input = RB.Input;
+var RB 		= require('react-bootstrap');
+var Form 	= RB.Form;
+var Input 	= RB.Input;
 
 var handleForm = require('../utils/handle-form.js');
 
@@ -20,18 +21,14 @@ var datasourceSelect = module.exports = React.createClass({
 	componentDidUpdate: function(){
 
 		var id = this.state["select-one"];
-		this.props.cortex.datasource.id.set(id);
 
-		this.props.cortex.datasource.list.map(function(d) {
-			if (d.id.val() === id ){
+		// store active id
+		this.props.cortex.datasource_active_id.set(id);
 
-				this.props.cortex.datasource.name = d.name.val();
-				this.props.cortex.datasource.url  = d.url.val();
+		if (Cookies.enabled) { Cookies.set('dashboard-datasource-active-id', id); }
 
-				// tofix: only load JSON data if needed 
-				this.loadData( d.url.val(), d.data );
-			}
-		}.bind(this) );
+		// load data source (TOFIX: only load JSON data if needed)
+		this.loadData( this.props.cortex.datasources[id].url.val(), this.props.cortex.datasources[id].data );
 	},
 
 	loadData: function(url, obj) {
@@ -39,23 +36,24 @@ var datasourceSelect = module.exports = React.createClass({
 			.get(url)
 			.end(function(res) {
 				obj.set(res.body);
-				this.props.cortex.datasource.data.set(res.body);
 				//console.log(obj.val());
 			}.bind(this));
 	},
 
     render: function() {
 
-		var options = this.props.cortex.datasource.list.map(function(d, index) {
-			return ( <option key={index} value={d.id.val()}>{d.name.val()}</option> );
-		});
+		var options = [];
 
-		// default empty option
-		options.unshift( <option key={-1} value=''>select data source</option>  );
+		this.props.cortex.datasources.forEach( function(key, d){
+			options.push(<option key={key} value={key}>{d.name.val()}</option>);
+		});
 
         return (
 			<div>
-				<Input type="select" name="select-one" value={this.props.cortex.datasource.id.val()} onChange={this.onChange}>
+				<Input type="select" name="select-one" value={this.props.cortex.datasource_active_id.val()} onChange={this.onChange}>
+
+					<option key={-1} value=''>select data</option>
+
 					{options}
 				</Input>
 			</div>

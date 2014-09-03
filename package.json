@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "bootstrap": "^3.2.0",
+    "cookies-js": "^0.4.0",
     "cortexjs": "^0.6.0",
     "cuid": "^1.2.4",
     "d3": "^3.4.11",
