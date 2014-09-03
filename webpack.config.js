@@ -18,7 +18,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
-	//modulesDirectories: ['node_modules', 'bower_components'],
     extensions: ['', '.js', '.jsx','.css']
   },
   module: {
@@ -42,7 +41,4 @@ module.exports = {
 	  { test: /\.svg$/ , loader: "file?mimetype=image/svg+xml" },
     ]
   },
-  externals: {
-    //'showdown': 'window.Showdown'
-  }
 };

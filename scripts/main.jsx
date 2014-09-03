@@ -2,7 +2,7 @@
 
 // -- styles --
 require("bootstrap/dist/css/bootstrap.min.css");
-require("font-awesome/css/font-awesome.min.css");
+//require("font-awesome/css/font-awesome.min.css"); // broken
 require("../css/base.less");
 
 // -- scripts --
