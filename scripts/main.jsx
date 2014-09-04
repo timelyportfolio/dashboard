@@ -15,8 +15,7 @@ require("d3/d3.min.js");
 // -- modules --
 var Cookies 		= require("cookies-js");
 var Cortex          = require("cortexjs");
-
-//var minimongo 		= require("minimongo");
+//var PouchDB 		= require("pouchdb"); // broken: missing dependencies??
 
 var React           = require('react');
 
@@ -47,7 +46,16 @@ var appdata = {
 	datasource_active_id: '',
 };
 
-var cortex = new Cortex(appdata);
+// cookie check...
+if (Cookies.enabled) {
+    Cookies.set('dashboard-db', 'foo');
+}
+
+// localdb check...
+var pouchdb = new PouchDB('dashboard', {auto_compaction : true});
+
+// app state check...
+var cortex 	= new Cortex(appdata);
 
 var routes = (
   <Route handler={App} cortex={cortex}>
@@ -67,98 +75,9 @@ var rootComponent = React.renderComponent(
   document.body
 );
 
-/*
-var IndexedDb = minimongo.IndexedDb;
-
-// Create IndexedDb
-db = new IndexedDb({namespace: "dashboard"}, function() {
-    // Add a collection to the database
-    db.addCollection("cortex", function() {
-        doc = { species: "dog", name: "Bingo" };
-
-        // Always use upsert for both inserts and modifies
-        db.cortex.upsert(doc, function() {
-            // Success:
-
-            // Query dog (with no query options beyond a selector)
-            db.cortex.findOne({ species:"dog" }, {}, function(res) {
-                console.log("Dog's name is: " + res.name);
-            });
-        });
-    });
-}, function() { alert("some error!"); });
-*/
-
 cortex.on("update", function(updatedState) {
 
 	rootComponent.setProps({cortex: updatedState});
-
-	//doc = JSON.stringify({updatedState}) ;
-	//console.log(doc);
-	//db.cortex.upsert(doc, function() {
-	//	console.log('your indexdb was updated');
-	//});
 });
-
-if (Cookies.enabled) {
-    Cookies.set('dashboard-indexdb', 'foo');
-}
-
-/*
-databaseExists('IDBWrapper-minimongo_dashboard', function (yesno) {
-    //alert (dbName + " exists? " + yesno);
-	console.log(yesno);
-});
-
-function databaseExists(dbname, callback) {
-    var req = indexedDB.open(dbname);
-    var existed = true;
-    req.onsuccess = function () {
-        req.result.close();
-        if (existed){
-			console.log('db exists');
-            //indexedDB.deleteDatabase(dbname);
-		}
-        callback(existed);
-    };
-    req.onupgradeneeded = function () {
-        existed = false;
-    };
-}
-*/
-
-/*
-
-<Route name="user" path="/user/:userId" handler={User}>
-  <Route name="task" path="/user/:userId/tasks/:taskId" handler={Task}/>
-  <Redirect from="/user/:userId/todos/:taskId" to="task"/>
-</Route>
-
-var User = React.createClass({
-  render: function() {
-    return (
-      <div className="User">
-        <h1>User id: {this.props.params.userId}</h1>
-        <ul>
-          <li><Link to="task" userId={this.props.params.userId} taskId="foo">foo task</Link></li>
-          <li><Link to="task" userId={this.props.params.userId} taskId="bar">bar task</Link></li>
-        </ul>
-        {this.props.activeRouteHandler()}
-      </div>
-    );
-  }
-});
-
-var Task = React.createClass({
-  render: function() {
-    return (
-      <div className="Task">
-        <h2>User id: {this.props.params.userId}</h2>
-        <h3>Task id: {this.props.params.taskId}</h3>
-      </div>
-    );
-  }
-});
-*/
 
 
