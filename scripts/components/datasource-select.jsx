@@ -28,7 +28,9 @@ var datasourceSelect = module.exports = React.createClass({
 		if (Cookies.enabled) { Cookies.set('dashboard-datasource-active-id', id); }
 
 		// load data source (TOFIX: only load JSON data if needed)
-		this.loadData( this.props.cortex.datasources[id].url.val(), this.props.cortex.datasources[id].data );
+		//if (id !== ''){
+			this.loadData( this.props.cortex.datasources[id].url.val(), this.props.cortex.datasources[id].data );
+		//}
 	},
 
 	loadData: function(url, obj) {

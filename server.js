@@ -43,5 +43,5 @@ new WebpackDevServer(webpack(config), {
     console.log(err);
   }
 
-  console.log('Listening at localhost:3000\nLive coding on: localhost:3000/public');
+  console.log('Listening at localhost:3001');
 });

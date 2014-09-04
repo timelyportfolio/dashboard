@@ -3,7 +3,7 @@
 // -- styles --
 require("bootstrap/dist/css/bootstrap.min.css");
 //require("font-awesome/css/font-awesome.min.css"); // broken
-require("../css/base.less");
+require("../styles/base.less");
 
 // -- scripts --
 //require("jquery/dist/jquery.min.js"); // broken: bootstrap cant see jquery for some reason

@@ -19,24 +19,26 @@ var Accordion = RB.Accordion;
 
 var cuid = require('cuid');
 
-var NotesList = React.createClass({
+var List = React.createClass({
 
-	remove: function(e, id) {
-		//this.props.floor.rooms.push({light_on: true});
-		//console.log(id);
-		//return false;
+	edit: function(e) {
+		console.log("edit");
 	},
+
+	// todix: pass "id" as an event-handler argument
+	//remove: function(e, id) {
+	//	console.log(id);
+	//},
 
 	render: function() {
 
-    	var createItem = function(itemText, index) {
-			//console.log( cuid() );
+    	var createItem = function(id, item) {
+			//console.log(id);
         	return (
-           		<div key={index} >
-               		<Panel bsStyle="primary" header={itemText.name.val()}>
+           		<div key={id} >
+               		<Panel bsStyle="primary" header={item.name}>
 
-                   		URL: <a href={itemText.url.val()}>{itemText.url.val()}</a>
-						<p>ID: {itemText.id.val()}</p>
+                   		URL: <a href={item.url}>{item.url}</a>
 
 					<ButtonToolbar>
 						<Button
@@ -45,7 +47,9 @@ var NotesList = React.createClass({
 							{'edit' }
 						</Button>
 						<Button
-							onClick={this.remove}
+							onClick={ function(){
+								this.props.cortex.datasources.destroy(id);
+							}.bind(this)}
 							type="#"
 							bsStyle="danger" >
 							remove
@@ -56,13 +60,15 @@ var NotesList = React.createClass({
 					</Panel>
 				</div>
 			);
-    };
+    	}.bind(this);
 
-    return (
-		<div>
-            {this.props.cortex.datasource.list.map(createItem)}
-		</div>
-	);
+		var sources = [];
+
+		this.props.cortex.datasources.forEach( function(id, d){
+			sources.push( createItem(id, d.val()) );
+		}); 
+
+		return (<div> {sources} </div>);
   }
 });
 
@@ -167,7 +173,7 @@ var DataSourceAdmin = module.exports = React.createClass({
 				</ButtonToolbar>
 
 				<p/>
-				<NotesList items={this.state.items} cortex={this.props.cortex} />
+				<List items={this.state.items} cortex={this.props.cortex} />
 				
 			</div>
 
