@@ -9,8 +9,8 @@ require("../styles/base.less");
 //require("jquery/dist/jquery.min.js"); // broken: bootstrap cant see jquery for some reason
 require("bootstrap/dist/js/bootstrap.min.js");
 require("d3/d3.min.js");
-//require("../bower_components/c3/c3.css");    // works
-//require("../bower_components/c3/c3.min.js"); // broken
+// broken: c3js npm package
+// broken: pouchdc npm package
 
 // -- modules --
 var Cookies 		= require("cookies-js");
@@ -76,8 +76,5 @@ var rootComponent = React.renderComponent(
 );
 
 cortex.on("update", function(updatedState) {
-
 	rootComponent.setProps({cortex: updatedState});
 });
-
-

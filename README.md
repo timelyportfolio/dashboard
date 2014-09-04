@@ -7,5 +7,5 @@ react.js based dashboard (experimental)
 # setup
 
 * npm install
-* node server.js (or: run "webpack -p" and use your own webserver to serve the "/public" files)
+* node server.js (or run "webpack -p" and use some other webserver to serve the "/public" files)
 * browse to http://localhost:3001  (live coding at: http://localhost:3000/public/ )
