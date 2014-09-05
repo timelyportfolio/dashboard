@@ -10,7 +10,7 @@ require("../styles/base.less");
 require("bootstrap/dist/js/bootstrap.min.js");
 require("d3/d3.min.js");
 // broken: c3js npm package
-// broken: pouchdc npm package
+// broken: pouchdb npm package
 
 // -- modules --
 var Cookies 		= require("cookies-js");
@@ -52,7 +52,12 @@ if (Cookies.enabled) {
 }
 
 // localdb check...
-var pouchdb = new PouchDB('dashboard', {auto_compaction : true});
+
+var pouchdb = new PouchDB('dashboard1', {auto_compaction : true } );
+
+pouchdb.changes().on('change', function() {
+  console.log('Ch-Ch-Changes');
+});
 
 // app state check...
 var cortex 	= new Cortex(appdata);
@@ -75,6 +80,13 @@ var rootComponent = React.renderComponent(
   document.body
 );
 
+//pouchdb.put( { _id: 'dave@gmail.com', name: 'David', age: 67} );
+
 cortex.on("update", function(updatedState) {
 	rootComponent.setProps({cortex: updatedState});
+
+	//console.log( { cortex: updatedState });
+	//console.log( JSON.stringify({cortex: updatedState}) );
+	//pouchdb.put( { _id: 'dave@gmail.com', name: 'David', age: 67} );
+	//pouchdb.put( { cortex: JSON.stringify(updatedState) } );
 });

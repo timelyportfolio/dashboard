@@ -38,7 +38,6 @@ var datasourceSelect = module.exports = React.createClass({
 			.get(url)
 			.end(function(res) {
 				obj.set(res.body);
-				//console.log(obj.val());
 			}.bind(this));
 	},
 
