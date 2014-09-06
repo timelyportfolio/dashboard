@@ -22,108 +22,73 @@ made when writing the code below:
   * Array.prototype.indexOf()
   * NodeList or HTMLCollection type for same-named inputs in form.elements
 
+* supported types:
+  * simple types: color|date|datetime|datetime-local|file|month|number|password|range|search|tel|text|time|url|week
+  * less-simple types: select|select-multiple|textarea|checkbox|checkbox-multiple|radio
+
+* unsupported types:
+  * file-multiple|date-range|signature|...
+
+* source: https://gist.github.com/insin/082c0d88f6290a0ea4c7
+
 */
+var handleForm = module.exports = function(e) {
+    var el = e.target;
+    var name = el.name;
+    var type = el.type;
+    var stateChange = {};
 
-var handleForm = module.exports =  function (e) {
-  var el = e.target;
-  var name = el.name;
-  var type = el.type;
-  var stateChange = {};
+    if (type == 'select-multiple') {
 
-  if (type == 'select-multiple') {
+        var selectedOptions = [];
 
-    var selectedOptions = [];
+        for (var i = 0, l = el.options.length; i < l; i++) {
+            if (el.options[i].selected) {
+                selectedOptions.push(el.options[i].value);
+            }
+        }
 
-    for (var i = 0, l = el.options.length; i < l; i++) {
-      if (el.options[i].selected) {
-        selectedOptions.push(el.options[i].value);
-      }
+        stateChange[name] = selectedOptions;
     }
+    else if (type == 'checkbox') {
 
-    stateChange[name] = selectedOptions;
-  }
-  else if (type == 'checkbox') {
+        var objType = Object.prototype.toString.call(el.form.elements[name]);
 
-    var objType = Object.prototype.toString.call(el.form.elements[name]);
+        if (objType == '[object NodeList]' || objType == '[object HTMLCollection]') {
 
-    if (objType == '[object NodeList]' || objType == '[object HTMLCollection]') {
+            var checkedBoxes = (Array.isArray(this.state[name]) ? this.state[name].slice() : []);
 
-      var checkedBoxes = (Array.isArray(this.state[name]) ? this.state[name].slice() : []);
+            if (el.checked) {
+                checkedBoxes.push(el.value);
+            }
+            else {
+                checkedBoxes.splice(checkedBoxes.indexOf(el.value), 1);
+            }
+            stateChange[name] = checkedBoxes;
+        }
+        else {
+            stateChange[name] = el.checked;
+        }
+    }
+    else if (type == 'file') {
+		var file = el.files[0];
+        //console.log(file);
+        stateChange[name] = file;
 
-      if (el.checked) {
-        checkedBoxes.push(el.value);
-      }
-      else {
-        checkedBoxes.splice(checkedBoxes.indexOf(el.value), 1);
-      }
-      stateChange[name] = checkedBoxes;
+		/*
+		var reader = new FileReader ();
+		reader.readAsText (file);
+		reader.onerror = function (ev) { console.log(ev); };
+		reader.onload = function (ev) {
+			console.log(ev);
+			this.setState({ myFileContent : reader.result });
+		}.bind(this);
+		*/
+
     }
     else {
-      stateChange[name] = el.checked;
+        stateChange[name] = el.value;
     }
-  }
-  else {
-    stateChange[name] = el.value;
-  }
 
-  this.setState(stateChange);
+    this.setState(stateChange);
 };
-
-/* 
-
-var UploadImageForm = React.createClass({
-  getInitialState: function() {
-    return {
-      myFileName: "",
-      myFileHandle: {}
-    };
-  },
-  
-  handleChange: function(event) {
-    console.log("handleChange() fileName = " + event.target.files[0].name);
-    console.log("handleChange() file handle = " + event.target.files[0]);
-    this.setState( {myFileName: event.target.files[0].name} );
-    this.setState( {myFileHandle: event.target.files[0]} );
-  },
-  
-  handleSubmit: function(e) {
-    e.preventDefault();
-    console.log("INSIDE: handleSubmit()");
-    console.log("fileName = " + this.state.myFileName); 
-    console.log("this.state.myFileHandle = " + this.state.myFileHandle);
-
-
-    if (this.state.myFileHandle) {
-      console.log("INSIDE if test myFileHandle.length");
-      var file = this.state.myFileHandle;
-      var name = this.state.myFileName;
-      var parseFile = new Parse.File(name, file);
-
-
-      var myUser = new Parse.Object("TestObj");
-      myUser.set("profilePicFile", parseFile);
-      myUser.save()
-        .then(function() {
-          // The file has been saved to User.
-          this.setState( {myFileHandle: null} );
-          console.log("FILE SAVED to Object: Parse.com");
-        }.bind(this), function(error) {
-          // The file either could not be read, or could not be saved to Parse.
-          console.log("ERROR: Parse.com " + error.code + " " + error.message);
-        });;
-    } // end if
-
-  },
-  
-  render: function() {
-      return  (
-
-        <form onSubmit={this.handleSubmit}>
-          <input type="file" onChange={this.handleChange} id="profilePhotoFileUpload" />
-          <input type="submit" value="Post" />
-        </form>
-      );
-  }
-});
-
-*/

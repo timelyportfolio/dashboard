@@ -35,7 +35,6 @@ var Help      		= require('./components/help');
 var Campaign   		= require('./components/campaign');
 var Index  			= require('./components/index');
 var DataSourceAdmin = require('./components/datasource-admin');
-var FileUpload 		= require('./components/file-upload');
 
 var appdata = {
 	notes: [],
@@ -72,7 +71,6 @@ var routes = (
 	<Route name="smarttable" handler={SmartTable} cortex={cortex}/>
 	<Route name="contact" handler={Contact}/>
 	<Route name="help" handler={Help}/>
-	<Route name="fileupload" handler={FileUpload}/>
 	<Route name="index" handler={Index}/>
   </Route>
 );
