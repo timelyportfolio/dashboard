@@ -13,6 +13,7 @@
 	- responsive design
 	- offline support
 	- easy to install and maintain
+	- easy to customize
 	- good documentation
 	- unit testing
 	- browser testing
@@ -20,12 +21,11 @@
 
 # specific todo's
 
-- finite-state-machine structure for a sane, highlevel application-state logic flow
-	- tofix: state change issue: resetting "data-source selection" to '' does not work
-	- tofix: component lifecycle / data issues: data-source-selection is async, how to update components after loading?
+- store/load cortex using pouchdb
+- store/load data files using pouchdb
 
-- store cortex in pouchdb
-- store data/files in pouchdb
+- to fix: state change issue: resetting "data-source selection" to '' does not work
+- to fix: component lifecycle / data issues: data-source-selection is async, how to update components after loading?
 
 - data input (cortex and this.state in components) validation (using react-tcomb?)
 

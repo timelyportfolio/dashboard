@@ -13,7 +13,7 @@ var d3 = require('d3');
 var MyModal = React.createClass({
   render: function() {
     return this.transferPropsTo(
-        <Modal title="Modal heading" animation={true}>
+        <Modal title="Modal heading" animation={false}>
           <div className="modal-body">
             <h4>Text in a modal</h4>
 			<p>Lorum ipsum</p>
@@ -33,7 +33,7 @@ var Index = module.exports = React.createClass({
       <div>
 			<div className="row">
 				<div className="col-lg-12">
-					<h1 className="page-header">info tiles</h1>
+					{/* <h1 className="page-header">dashboard 1</h1> */ }
 				</div>
 			</div>
 

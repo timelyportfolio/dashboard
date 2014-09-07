@@ -52,9 +52,7 @@ var datasourceSelect = module.exports = React.createClass({
         return (
 			<div>
 				<Input type="select" name="select-one" value={this.props.cortex.datasource_active_id.val()} onChange={this.onChange}>
-
 					<option key={-1} value=''>select data</option>
-
 					{options}
 				</Input>
 			</div>
